@@ -4,7 +4,7 @@
   "slug": "hisense_ac",
   "description": "Interface for controlling Air Conditioners, e.g. with HiSense modules.",
   "url": "https://github.com/xury77/AirCon",
-  "image": "deiger/aircon",
+  "image": "xury77/aircon",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
   "startup": "application",
   "boot": "auto",
