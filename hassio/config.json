@@ -1,6 +1,6 @@
 {
   "name": "HiSense Air Conditioners",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "slug": "hisense_ac",
   "description": "Interface for controlling Air Conditioners, e.g. with HiSense modules.",
   "url": "https://github.com/xury77/AirCon",
@@ -38,6 +38,7 @@
     "mqtt_user": "str?",
     "mqtt_pass": "str?",
     "port": "port",
-    "local_ip": "str?"
+    "local_ip": "str?",
+    "temp_type": "str?"
   }
 }

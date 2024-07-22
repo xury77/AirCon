@@ -210,7 +210,7 @@ async def run(parsed_args):
                   'topic': mqtt_topics['pub'].format(device.mac_address, 'available')
               },
           ],
-          'precision': 1.0,
+          'precision': device.get_temp_precision(),
           'temperature_unit': 'F' if device.is_fahrenheit else 'C'
       }
       topics = device.topics
@@ -288,7 +288,7 @@ async def discovery(parsed_args):
         'model': config['oem_model'],
         'sw_version': config['sw_version'],
         'dsn': config['dsn'],
-        'temp_type': config['temp_type'],
+        'temp_type': parsed_args.temp_type or  config['temp_type'],
         'mac_address': config['mac'],
         'ip_address': config['lan_ip'],
         'lanip_key': config['lanip_key'],
