@@ -13,7 +13,7 @@
 # Configuration
 
 1. Find your application code from the list
-   [here](https://github.com/deiger/AirCon#prerequisites).
+   [here](https://github.com/xury77/AirCon#prerequisites).
 1. Set the configuration as follows:
    ```yaml
    app:
@@ -25,5 +25,6 @@
    mqtt_user: User name for MQTT server. Remove if no authentication is used.
    mqtt_pass: Password for MQTT server. Remove if no authentication is used.
    port: Port number for the web server.
+   temp_type: temperature type F or C
    ```
    * Note: _If multiple apps are used, add them as separate values under `app`_
