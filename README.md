@@ -1,4 +1,4 @@
-# HiSense Air Conditioners
+# HiSense Air Conditioners (focused for Fujitsu AC cloned repo)
 
 This program implements the Ayla Networks LAN API to interact with HiSense WiFi Air Conditioner module, models AEH-W4B1 and AEH-W4E1, as well as Fujitsu FGLair.
 
