@@ -71,6 +71,9 @@ class Economy(enum.Enum):
   OFF = 0
   ON = 1
 
+class Powerful(enum.Enum):
+  OFF = 0
+  ON = 1
 
 class EightHeat(enum.Enum):
   OFF = 0
@@ -136,6 +139,9 @@ class FglFanSpeed(enum.IntEnum):
   HIGH = 3
   AUTO = 4
 
+class OutdoorLN(enum.Enum):
+  OFF = 0
+  ON = 1
 
 class Properties(object):
 
@@ -476,7 +482,24 @@ class FglProperties(Properties):
                                         'decoder': lambda x: Economy[x]
                                     }
                                 })
-
+  powerful_mode: Powerful = field(default=Powerful.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Powerful[x]
+                                    }
+                                })
+  outdoor_low_noise: OutdoorLN = field(default=OutdoorLN.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: OutdoorLN[x]
+                                    }
+                                })
 
 @dataclass_json
 @dataclass
