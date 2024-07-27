@@ -445,6 +445,13 @@ class FglProperties(Properties):
                                       'read_only': True,
                                       'parser': lambda x: round((x-5000)/50)/2
                                   })
+  outdoor_temperature: float = field(default=25,
+                                  metadata={
+                                      'base_type': 'integer',
+                                      'scale': 0.1,
+                                      'read_only': True,
+                                      'parser': lambda x: round((x-5000)/50)/2
+                                  })
   af_vertical_direction: int = field(default=3,
                                      metadata={
                                          'base_type': 'integer',
