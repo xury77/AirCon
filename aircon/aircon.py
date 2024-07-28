@@ -568,6 +568,8 @@ class FglDevice(Device):
         'temp': 'adjust_temperature',
         'preset_mode': 'economy_mode',
         'display_temperature': 'display_temperature'
+        #'outdoor_temperature': 'outdoor_temperature',
+        #'powerfull_mode': "powerful_mode"
     }
     self.work_modes = ['off', 'fan_only', 'heat', 'cool', 'dry', 'auto']
     self.fan_modes = ['auto', 'diffuse', 'low', 'medium', 'high']

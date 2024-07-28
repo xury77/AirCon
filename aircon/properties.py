@@ -143,6 +143,14 @@ class OutdoorLN(enum.Enum):
   OFF = 0
   ON = 1
 
+class Getprop(enum.Enum):
+  OFF = 0
+  ON = 1
+
+class Refresh(enum.Enum):
+  OFF = 0
+  ON = 1
+
 class Properties(object):
 
   @classmethod
@@ -505,6 +513,33 @@ class FglProperties(Properties):
                                     'dataclasses_json': {
                                         'encoder': lambda x: x.name,
                                         'decoder': lambda x: OutdoorLN[x]
+                                    }
+                                })
+  get_prop: Getprop = field(default=Getprop.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Getprop[x]
+                                    }
+                                })
+  get_prop2: Getprop = field(default=Getprop.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Getprop[x]
+                                    }
+                                })
+  refresh: Refresh = field(default=Refresh.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Refresh[x]
                                     }
                                 })
 
