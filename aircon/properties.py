@@ -71,6 +71,9 @@ class Economy(enum.Enum):
   OFF = 0
   ON = 1
 
+class Powerful(enum.Enum):
+  OFF = 0
+  ON = 1
 
 class EightHeat(enum.Enum):
   OFF = 0
@@ -136,6 +139,17 @@ class FglFanSpeed(enum.IntEnum):
   HIGH = 3
   AUTO = 4
 
+class OutdoorLN(enum.Enum):
+  OFF = 0
+  ON = 1
+
+class Getprop(enum.Enum):
+  OFF = 0
+  ON = 1
+
+class Refresh(enum.Enum):
+  OFF = 0
+  ON = 1
 
 class Properties(object):
 
@@ -439,6 +453,13 @@ class FglProperties(Properties):
                                       'read_only': True,
                                       'parser': lambda x: round((x-5000)/50)/2
                                   })
+  outdoor_temperature: float = field(default=25,
+                                  metadata={
+                                      'base_type': 'integer',
+                                      'scale': 0.1,
+                                      'read_only': True,
+                                      'parser': lambda x: round((x-5000)/50)/2
+                                  })
   af_vertical_direction: int = field(default=3,
                                      metadata={
                                          'base_type': 'integer',
@@ -476,7 +497,51 @@ class FglProperties(Properties):
                                         'decoder': lambda x: Economy[x]
                                     }
                                 })
-
+  powerful_mode: Powerful = field(default=Powerful.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Powerful[x]
+                                    }
+                                })
+  outdoor_low_noise: OutdoorLN = field(default=OutdoorLN.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: OutdoorLN[x]
+                                    }
+                                })
+  get_prop: Getprop = field(default=Getprop.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Getprop[x]
+                                    }
+                                })
+  get_prop2: Getprop = field(default=Getprop.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Getprop[x]
+                                    }
+                                })
+  refresh: Refresh = field(default=Refresh.OFF,
+                                metadata={
+                                    'base_type': 'boolean',
+                                    'read_only': False,
+                                    'dataclasses_json': {
+                                        'encoder': lambda x: x.name,
+                                        'decoder': lambda x: Refresh[x]
+                                    }
+                                })
 
 @dataclass_json
 @dataclass
