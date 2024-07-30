@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [0.3.22](https://github.com/xury77/AirCon/compare/0.3.21...0.3.22)
+> 30 July 2024
+
+- bug in preset mode. Temporary disabled.
+
 #### [0.3.21](https://github.com/xury77/AirCon/compare/0.3.20...0.3.21)
 > 30 July 2024
 
