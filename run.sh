@@ -27,4 +27,4 @@ configs=
 for i in $(find $CONFIG_DIR -maxdepth 1 -type f -name "config_*.json" -exec basename {} \;)
   do configs="$configs --config $CONFIG_DIR/$i --type $TYPE"
 done
-python -m aircon --log_level $LOG_LEVEL run --port $PORT --mqtt_host "$MQTT_HOST" --mqtt_port $MQTT_PORT --mqtt_user "$MQTT_USER" --local_ip "$LOCAL_IP" $configs
+python -m aircon --log_level $LOG_LEVEL run --port $PORT --mqtt_host "$MQTT_HOST" --mqtt_port $MQTT_PORT --mqtt_user "$MQTT_USER" --temp_type "$TEMP_TYPE" --local_ip "$LOCAL_IP" $configs
