@@ -75,7 +75,6 @@ def ParseArguments() -> argparse.Namespace:
                             action='append',
                             choices={'ac', 'fgl', 'fgl_b', 'humidifier'},
                             help='Device type. Deprecated, now decided based on OEM model.')
-  group_device.add_argument('temp_type', help='Celsius or Fahrenheit')
 
   group_mqtt = parser_run.add_argument_group('MQTT', 'Settings related to the MQTT')
   group_mqtt.add_argument('--mqtt_host', default=None, help='MQTT broker hostname or IP address.')
@@ -91,6 +90,7 @@ def ParseArguments() -> argparse.Namespace:
   parser_discovery.add_argument('app', choices=set(SECRET_MAP), help='The app used for the login.')
   parser_discovery.add_argument('user', help='Username for the app login.')
   parser_discovery.add_argument('passwd', help='Password for the app login.')
+  parser_discovery.add_argument('tmptype', help='Celsius or Fahrenheit')
   parser_discovery.add_argument('-d',
                                 '--device',
                                 default=None,
@@ -295,7 +295,7 @@ async def discovery(parsed_args):
         'model': config['oem_model'],
         'sw_version': config['sw_version'],
         'dsn': config['dsn'],
-        'temp_type': parsed_args.temp_type,
+        'temp_type': parsed_args.tmptype,
         'mac_address': config['mac'],
         'ip_address': config['lan_ip'],
         'lanip_key': config['lanip_key'],
