@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [0.3.21](https://github.com/xury77/AirCon/compare/0.3.20...0.3.21)
+> 30 July 2024
+
+- Adding some fgl properties: refresh,outdoor_temperature,powerful_mode and others
+
 #### [0.3.20](https://github.com/xury77/AirCon/compare/0.3.19...0.3.20)
 > 25 July 2024
 
