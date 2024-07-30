@@ -3,12 +3,14 @@ set -e
 
 PORT=$(jq -r '.port // 8888' $OPTIONS_FILE)
 TYPE=$(jq -r '.type // "ac"' $OPTIONS_FILE)
+TYPE=$(jq -r '.type // "ac"' $OPTIONS_FILE)
 LOG_LEVEL=$(jq -r '.log_level | ascii_upcase // "WARNING"' $OPTIONS_FILE)
 MQTT_HOST=$(jq -r '.mqtt_host // ""' $OPTIONS_FILE)
 MQTT_PORT=$(jq -r '.mqtt_port // 1883' $OPTIONS_FILE)
 MQTT_USER=$(jq -r 'if (.mqtt_user and .mqtt_pass) then (.mqtt_user + ":" + .mqtt_pass) else "" end' $OPTIONS_FILE)
 APPS=$(jq -r '.app | length // 0' $OPTIONS_FILE)
 LOCAL_IP=$(jq -r 'if (.local_ip) then (.local_ip) else "" end' $OPTIONS_FILE)
+TEMP_TYPE=$(jq -r '.temp_type // "F"' $OPTIONS_FILE)
 
 mkdir -p $CONFIG_DIR
 if [ -z "$(find $CONFIG_DIR -maxdepth 1 -type f -name "config_*.json")" ]; then
