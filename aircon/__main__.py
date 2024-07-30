@@ -75,6 +75,7 @@ def ParseArguments() -> argparse.Namespace:
                             action='append',
                             choices={'ac', 'fgl', 'fgl_b', 'humidifier'},
                             help='Device type. Deprecated, now decided based on OEM model.')
+    group_device.add_argument('--temp_type', required=True, action='append', help='Celsius or Fahrenheit')
 
   group_mqtt = parser_run.add_argument_group('MQTT', 'Settings related to the MQTT')
   group_mqtt.add_argument('--mqtt_host', default=None, help='MQTT broker hostname or IP address.')
