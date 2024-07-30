@@ -53,7 +53,7 @@ class Device(object):
     self.work_modes = []
     self.fan_modes = []
     self.vertical_level = []
-    self.preset_mode = []
+    # self.preset_mode = []
 
     self._next_command_id = 0
 
@@ -566,7 +566,7 @@ class FglDevice(Device):
         'work_mode': 'operation_mode',
         'swing_mode': 'af_vertical_swing',
         'temp': 'adjust_temperature',
-        'preset_mode': 'economy_mode',
+        # 'preset_mode': 'economy_mode',
         'display_temperature': 'display_temperature'
         #'outdoor_temperature': 'outdoor_temperature',
         #'powerfull_mode': "powerful_mode"
@@ -574,7 +574,7 @@ class FglDevice(Device):
     self.work_modes = ['off', 'fan_only', 'heat', 'cool', 'dry', 'auto']
     self.fan_modes = ['auto', 'diffuse', 'low', 'medium', 'high']
     self.vertical_level = ['1', '2', '3', '4']
-    self.preset_mode = ['none', 'eco', 'boost']
+    # self.preset_mode = ['none', 'eco', 'boost']
 
 
 class FglBDevice(Device):

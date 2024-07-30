@@ -235,12 +235,12 @@ async def run(parsed_args):
         config['swing_mode_state_topic'] = mqtt_topics['pub'].format(device.mac_address,
                                                                      topics['swing_mode'])
         config['swing_modes'] = ['on', 'off']
-      if 'preset_mode' in topics:
-        config['preset_mode_command_topic'] = mqtt_topics['sub'].format(
-            device.mac_address, topics['preset_mode'])
-        config['preset_mode_state_topic'] = mqtt_topics['pub'].format(device.mac_address,
-                                                                     topics['preset_mode'])
-        config['preset_mode'] = device.preset_mode
+      # if 'preset_mode' in topics:
+      #   config['preset_mode_command_topic'] = mqtt_topics['sub'].format(
+      #       device.mac_address, topics['preset_mode'])
+      #   config['preset_mode_state_topic'] = mqtt_topics['pub'].format(device.mac_address,
+      #                                                                topics['preset_mode'])
+      #   config['preset_mode'] = device.preset_mode
       if 'temp' in topics:
         config['temperature_command_topic'] = mqtt_topics['sub'].format(
             device.mac_address, topics['temp'])
