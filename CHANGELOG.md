@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [0.3.23](https://github.com/xury77/AirCon/compare/0.3.22...0.3.23)
+> 31 July 2024
+
+- Add GitHub Action for Automated Container Creation and Publication to GHCR by @colino17 in [`#3`]
+- Revert back 'temp_type' config
+- 
+
 #### [0.3.22](https://github.com/xury77/AirCon/compare/0.3.21...0.3.22)
 > 30 July 2024
 
