@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [0.3.24](https://github.com/xury77/AirCon/compare/0.3.23...0.3.24)
+> 18 November 2024
+
+- fix FAN_ONLY as mentioned in [`#4`]
+- Bump aiohttp from 3.9.4 to 3.10.2
+
 #### [0.3.23](https://github.com/xury77/AirCon/compare/0.3.22...0.3.23)
 > 31 July 2024
 

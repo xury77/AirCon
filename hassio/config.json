@@ -1,6 +1,6 @@
 {
   "name": "HiSense Air Conditioners",
-  "version": "0.3.23",
+  "version": "0.3.24",
   "slug": "hisense_ac",
   "description": "Interface for controlling Air Conditioners, e.g. with HiSense modules.",
   "url": "https://github.com/xury77/AirCon",
