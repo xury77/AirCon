@@ -10,7 +10,7 @@ services:
   hisense_ac:
     depends_on:
       - copy_config
-    image: xury77/aircon:0.3.24
+    image: ghcr.io/xury77/aircon:0.3.24
     container_name: hisense_ac
     healthcheck:
       disable: true
