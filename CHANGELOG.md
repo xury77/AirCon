@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [0.3.31](https://github.com/sarbuk/AirCon/compare/0.3.29...0.3.31)
+> 27 June 2025
+
+- added additional definitions in ```__main__.py``` to expose additional topics for the following, outside of the HA climate control:
+  - economy_mode [switch]
+  - powerful_mode [switch]
+  - af_vertical_direction [integer 1-4]
+  - outdoor_temperature [sensor]
+
+#### [0.3.29](https://github.com/sarbuk/AirCon/compare/0.3.24...0.3.29)
+> 25 June 2025
+
+- add temp_step = 0.5 to allow half degree increments in HA
+- other changes due to forking from xury77
+
 #### [0.3.24](https://github.com/xury77/AirCon/compare/0.3.23...0.3.24)
 > 18 November 2024
 
