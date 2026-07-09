@@ -13,7 +13,7 @@
 # Configuration
 
 1. Find your application code from the list
-   [here](https://github.com/xury77/AirCon#prerequisites).
+   [here](https://github.com/sarbuk/AirCon#prerequisites).
 1. Set the configuration as follows:
    ```yaml
    app:

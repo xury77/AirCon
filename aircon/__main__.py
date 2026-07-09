@@ -192,6 +192,7 @@ async def run(parsed_args):
     mqtt_client.will_set(mqtt_topics['lwt'], payload='offline', retain=True)
     mqtt_client.connect(parsed_args.mqtt_host, parsed_args.mqtt_port)
     mqtt_client.publish(mqtt_topics['lwt'], payload='online', retain=True)
+    print(f"[DEBUG] Devices loaded: {len(devices)}", file=sys.stderr)
     for device in devices:
       config = {
           'unique_id': device.mac_address,
@@ -211,9 +212,21 @@ async def run(parsed_args):
               },
           ],
           'precision': device.get_temp_precision(),
+          'temp_step': 0.5,
           'temperature_unit': 'F' if device.is_fahrenheit else 'C'
       }
       topics = device.topics
+      # [PATCH] Extend topics manually for known-but-omitted features
+      fallback_keys = [
+        'economy_mode',
+        'powerful_mode',
+        'af_vertical_direction',
+        'outdoor_temperature',
+      ]
+      for key in fallback_keys:
+          if key not in topics:
+              topics[key] = key
+      print(f"[DEBUG] Patched topics for {device.name}: {topics.keys()}", file=sys.stderr)
       if 'env_temp' in topics:
         config['current_temperature_topic'] = mqtt_topics['pub'].format(
             device.mac_address, topics['env_temp'])
@@ -254,6 +267,69 @@ async def run(parsed_args):
       mqtt_client.publish(mqtt_topics['discovery'].format(device.mac_address),
                           payload=json.dumps(config),
                           retain=True)
+      if 'economy_mode' in topics:
+        mqtt_client.publish(
+            f"{parsed_args.mqtt_discovery_prefix}/switch/{device.mac_address}/economy_mode/config",
+            payload=json.dumps({
+                "name": f"{device.name} Economy Mode",
+                "unique_id": f"{device.mac_address}_economy_mode",
+                "state_topic": mqtt_topics['pub'].format(device.mac_address, topics['economy_mode']),
+                "command_topic": mqtt_topics['sub'].format(device.mac_address, topics['economy_mode']),
+                "payload_on": "ON",
+                "payload_off": "OFF",
+                "availability": [{"topic": mqtt_topics['lwt']}],
+                "device": config["device"]
+            }),
+            retain=True
+        )
+
+      if 'powerful_mode' in topics:
+        mqtt_client.publish(
+            f"{parsed_args.mqtt_discovery_prefix}/switch/{device.mac_address}/powerful_mode/config",
+            payload=json.dumps({
+                "name": f"{device.name} Powerful Mode",
+                "unique_id": f"{device.mac_address}_powerful_mode",
+                "state_topic": mqtt_topics['pub'].format(device.mac_address, topics['powerful_mode']),
+                "command_topic": mqtt_topics['sub'].format(device.mac_address, topics['powerful_mode']),
+                "payload_on": "ON",
+                "payload_off": "OFF",
+                "availability": [{"topic": mqtt_topics['lwt']}],
+                "device": config["device"]
+            }),
+            retain=True
+        )
+
+      if 'af_vertical_direction' in topics:
+        mqtt_client.publish(
+            f"{parsed_args.mqtt_discovery_prefix}/number/{device.mac_address}/af_vertical_direction/config",
+            payload=json.dumps({
+                "name": f"{device.name} Vertical Airflow",
+                "unique_id": f"{device.mac_address}_af_vertical_direction",
+                "state_topic": mqtt_topics['pub'].format(device.mac_address, topics['af_vertical_direction']),
+                "command_topic": mqtt_topics['sub'].format(device.mac_address, topics['af_vertical_direction']),
+                "min": 1,
+                "max": 4,
+                "step": 1,
+                "availability": [{"topic": mqtt_topics['lwt']}],
+                "device": config["device"]
+            }),
+            retain=True
+        )
+
+      if 'outdoor_temperature' in topics:
+        mqtt_client.publish(
+            f"{parsed_args.mqtt_discovery_prefix}/sensor/{device.mac_address}/outdoor_temperature/config",
+            payload=json.dumps({
+                "name": f"{device.name} Outdoor Temperature",
+                "unique_id": f"{device.mac_address}_outdoor_temperature",
+                "state_topic": mqtt_topics['pub'].format(device.mac_address, topics['outdoor_temperature']),
+                "unit_of_measurement": "°C",
+                "device_class": "temperature",
+                "availability": [{"topic": mqtt_topics['lwt']}],
+                "device": config["device"]
+            }),
+            retain=True
+        )
       device.add_property_change_listener(mqtt_client.mqtt_publish_update)
 
   async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(connect=5.0)) as session:

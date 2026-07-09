@@ -13,13 +13,13 @@ setuptools.setup(
     description='Interface for controlling Air Conditioners, e.g. with HiSense modules.',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/xury77/AirCon',
+    url='https://github.com/sarbuk/AirCon',
     author='Dror Eiger',
     author_email='droreiger@gmail.com',
     license='GPL 3.0',
     packages=setuptools.find_packages(),
     install_requires=[
-        'aiohttp==3.10.2', 'dataclasses_json', 'pycryptodome', 'paho-mqtt==2.1.0', 'tenacity',
+        'aiohttp==3.14.1', 'dataclasses_json', 'pycryptodome', 'paho-mqtt==2.1.0', 'tenacity',
         'get-mac', 'retry'
     ],
     classifiers=[
